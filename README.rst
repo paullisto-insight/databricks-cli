@@ -5,6 +5,8 @@ databricks-cli
   :alt: Build status
 .. image:: https://codecov.io/gh/databricks/databricks-cli/branch/main/graph/badge.svg
   :target: https://codecov.io/gh/databricks/databricks-cli
+  
+Test
 
 The Databricks Command Line Interface (CLI) is an open source tool which provides an easy to use interface to
 the Databricks platform. The CLI is built on top of the Databricks REST APIs.
