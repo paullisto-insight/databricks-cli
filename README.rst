@@ -6,7 +6,7 @@ databricks-cli
 .. image:: https://codecov.io/gh/databricks/databricks-cli/branch/main/graph/badge.svg
   :target: https://codecov.io/gh/databricks/databricks-cli
   
-az container exec --resource-group pgm-container-cor-rg --name databricks-cli --exec-command "databricks fs --help"
+az container exec --resource-group rg-name --name container-instance-name --exec-command "databricks fs --help"
 
 The Databricks Command Line Interface (CLI) is an open source tool which provides an easy to use interface to
 the Databricks platform. The CLI is built on top of the Databricks REST APIs.
