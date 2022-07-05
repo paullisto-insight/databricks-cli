@@ -37,7 +37,7 @@ class JobsService(object):
                    email_notifications=None, timeout_seconds=None, max_retries=None,
                    min_retry_interval_millis=None, retry_on_timeout=None, schedule=None,
                    notebook_task=None, spark_jar_task=None, spark_python_task=None,
-                   spark_submit_task=None, max_concurrent_runs=None, tasks=None, headers=None, version=None, git_source=None):
+                   spark_submit_task=None, max_concurrent_runs=None, tasks=None, headers=None, version=None):
         _data = {}
         if name is not None:
             _data['name'] = name
@@ -85,8 +85,6 @@ class JobsService(object):
             _data['max_concurrent_runs'] = max_concurrent_runs
         if tasks is not None:
             _data['tasks'] = tasks
-        if git_source is not None:
-            _data['git_source'] = git_source
         return self.client.perform_query('POST', '/jobs/create', data=_data, headers=headers, version=version)
 
     def submit_run(self, run_name=None, existing_cluster_id=None, new_cluster=None, libraries=None,
@@ -979,7 +977,7 @@ class DeltaPipelinesService(object):
         self.client = client
 
     def create(self, id=None, name=None, storage=None, configuration=None, clusters=None,
-               libraries=None, trigger=None, filters=None, target=None, continuous=None, development=None, allow_duplicate_names=None,
+               libraries=None, trigger=None, filters=None, allow_duplicate_names=None,
                headers=None):
         _data = {}
         if id is not None:
@@ -1002,18 +1000,12 @@ class DeltaPipelinesService(object):
             _data['filters'] = filters
             if not isinstance(filters, dict):
                 raise TypeError('Expected databricks.Filters() or dict for field filters')
-        if target is not None:
-            _data['target'] = target
-        if continuous is not None:
-            _data['continuous'] = continuous
-        if development is not None:
-            _data['development'] = development
         if allow_duplicate_names is not None:
             _data['allow_duplicate_names'] = allow_duplicate_names
         return self.client.perform_query('POST', '/pipelines', data=_data, headers=headers)
 
     def deploy(self, pipeline_id=None, id=None, name=None, storage=None, configuration=None,
-               clusters=None, libraries=None, trigger=None, filters=None, target=None, continuous=None, development=None,
+               clusters=None, libraries=None, trigger=None, filters=None,
                allow_duplicate_names=None, headers=None):
         _data = {}
         if id is not None:
@@ -1036,12 +1028,6 @@ class DeltaPipelinesService(object):
             _data['filters'] = filters
             if not isinstance(filters, dict):
                 raise TypeError('Expected databricks.Filters() or dict for field filters')
-        if target is not None:
-            _data['target'] = target
-        if continuous is not None:
-            _data['continuous'] = continuous
-        if development is not None:
-            _data['development'] = development
         if allow_duplicate_names is not None:
             _data['allow_duplicate_names'] = allow_duplicate_names
         return self.client.perform_query('PUT', '/pipelines/{pipeline_id}'.format(pipeline_id=pipeline_id), data=_data,
